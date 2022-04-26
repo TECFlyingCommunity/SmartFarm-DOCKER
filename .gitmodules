@@ -1,0 +1,12 @@
+[submodule "SmartFarm-API"]
+	path = SmartFarm-API
+	url = https://github.com/TECFlyingCommunity/SmartFarm-API.git
+[submodule "SmartFarm-FIRMWARE"]
+	path = SmartFarm-FIRMWARE
+	url = https://github.com/TECFlyingCommunity/SmartFarm-FIRMWARE.git
+[submodule "SmartFarm-MIDDLEWARE"]
+	path = SmartFarm-MIDDLEWARE
+	url = https://github.com/TECFlyingCommunity/SmartFarm-MIDDLEWARE.git
+[submodule "SmartFarm-WEB"]
+	path = SmartFarm-WEB
+	url = https://github.com/TECFlyingCommunity/SmartFarm-WEB.git
