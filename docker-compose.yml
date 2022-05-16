@@ -11,22 +11,29 @@ services:
     ports:
       - "5432:5432"
 
-  mosquitto:
-    container_name: mosquitto
-    image: eclipse-mosquitto:1.6
+  smart-farm-mosquitto:
+    container_name: smart-farm-mosquitto
     restart: always
-    # network_mode: host
-    volumes:
-      - ./mosquitto/config:/mosquitto/config
-      - ./mosquitto/log:/mosquitto/log
-      - ./mosquitto/data:/mosquitto/data
+    build:
+      context: SmartFarm-MOSQUITTO
+      dockerfile: Dockerfile
+    expose:
+      - "1883"
+      - "9001"
     ports:
       - 1883:1883
       - 9001:9001
+    environment:
+      - MOSQUITTO_USERNAME=smartfarm
+      - MOSQUITTO_PASSWORD=smartfarm123
+    volumes:
+      - ./SmartFarm-MOSQUITTO/config:/mosquitto/config
+      - ./SmartFarm-MOSQUITTO/log:/mosquitto/log
+      - ./SmartFarm-MOSQUITTO/data:/mosquitto/data
 
   smart-farm-middleware:
     container_name: smart-farm-middleware
-    # restart: always
+    restart: always
     build:
       context: SmartFarm-MIDDLEWARE
       dockerfile: Dockerfile
@@ -36,7 +43,9 @@ services:
       - db
     depends_on:
       - db
-      - mosquitto
+      - smart-farm-mosquitto
+    profiles:
+      - donotstart
 
   smart-farm-api:
     container_name: smart-farm-api
