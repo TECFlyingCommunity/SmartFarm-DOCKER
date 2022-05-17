@@ -44,8 +44,6 @@ services:
     depends_on:
       - db
       - smart-farm-mosquitto
-    profiles:
-      - donotstart
 
   smart-farm-api:
     container_name: smart-farm-api
